@@ -1,0 +1,97 @@
+[gd_scene load_steps=10 format=3 uid="uid://bquu6tpfl0t2t"]
+
+[ext_resource type="Script" path="res://playarea/handleUi.gd" id="1_0kssf"]
+[ext_resource type="Script" path="res://playarea/validateScore.gd" id="1_3yb2l"]
+[ext_resource type="Script" path="res://playarea/playDice.gd" id="1_cxa36"]
+[ext_resource type="Script" path="res://playarea/tableUi.gd" id="1_tu7mw"]
+[ext_resource type="Texture2D" uid="uid://by15tfc6pgccr" path="res://icon.svg" id="1_vm46p"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_v6kpb"]
+friction = 0.65
+rough = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o06sj"]
+size = Vector3(10, 0.2, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7wgo5"]
+albedo_texture = ExtResource("1_vm46p")
+
+[sub_resource type="BoxMesh" id="BoxMesh_v4yfe"]
+material = SubResource("StandardMaterial3D_7wgo5")
+size = Vector3(10, 0.2, 10)
+
+[node name="table" type="Node3D"]
+
+[node name="camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.56393, 0.825823, 0, -0.825823, 0.56393, 0, 8.29652, 6.67597)
+
+[node name="light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.542705, 0.839923, 0, -0.839923, -0.542705, 0, 14.5998, -7.07231)
+shadow_enabled = true
+shadow_transmittance_bias = 1.722
+
+[node name="actions" type="Node" parent="." groups=["tableActions"]]
+script = ExtResource("1_0kssf")
+
+[node name="centerContainer" type="CenterContainer" parent="actions"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -131.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="roll" type="Button" parent="actions/centerContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Roll 1d6"
+
+[node name="ui" type="Node" parent="." groups=["tableUi"]]
+script = ExtResource("1_tu7mw")
+
+[node name="centerContainer" type="CenterContainer" parent="ui"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 134.0
+grow_horizontal = 2
+
+[node name="gridContainer" type="GridContainer" parent="ui/centerContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 48
+columns = 2
+
+[node name="labelRollScore" type="Label" parent="ui/centerContainer/gridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Result:"
+
+[node name="rollScore" type="Label" parent="ui/centerContainer/gridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "0"
+
+[node name="data" type="Node" parent="."]
+
+[node name="score" type="Node" parent="data" groups=["tableData"]]
+script = ExtResource("1_3yb2l")
+
+[node name="body" type="StaticBody3D" parent="." groups=["table"]]
+transform = Transform3D(1, 0, 0, 0, 0.999848, 0.0174524, 0, -0.0174524, 0.999848, 0, 0, 0)
+physics_material_override = SubResource("PhysicsMaterial_v6kpb")
+
+[node name="shape" type="CollisionShape3D" parent="body"]
+shape = SubResource("BoxShape3D_o06sj")
+
+[node name="mesh" type="MeshInstance3D" parent="body/shape"]
+mesh = SubResource("BoxMesh_v4yfe")
+
+[node name="dice" type="Node3D" parent="."]
+script = ExtResource("1_cxa36")
+
+[node name="selectablePoint" type="Node3D" parent="dice"]
+
+[node name="center" type="Marker3D" parent="dice/selectablePoint" groups=["selectArea"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.67525, 0)
+
+[connection signal="pressed" from="actions/centerContainer/roll" to="dice" method="_on_roll_pressed"]

@@ -1,0 +1,112 @@
+[gd_scene load_steps=8 format=3 uid="uid://deayaw4udwqsf"]
+
+[ext_resource type="Script" path="res://props/dieMovement.gd" id="1_b2716"]
+[ext_resource type="Texture2D" uid="uid://by15tfc6pgccr" path="res://icon.svg" id="1_is7e2"]
+[ext_resource type="Script" path="res://props/dieValueRender.gd" id="3_si37s"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dsc28"]
+friction = 0.0
+bounce = 0.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y355q"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3xqgt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0oenu"]
+albedo_texture = ExtResource("1_is7e2")
+metallic = 0.4
+metallic_specular = 0.85
+metallic_texture_channel = 3
+roughness = 0.7
+clearcoat_enabled = true
+clearcoat = 0.37
+clearcoat_roughness = 0.21
+anisotropy_enabled = true
+anisotropy = -0.18
+grow_amount = 0.894
+
+[node name="d6" type="Node3D" groups=["die"]]
+metadata/face1 = 1
+metadata/face2 = 6
+metadata/face3 = 3
+metadata/face4 = 4
+metadata/face5 = 5
+metadata/face6 = 2
+
+[node name="rigidbody" type="RigidBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_dsc28")
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_b2716")
+
+[node name="shape" type="CollisionShape3D" parent="rigidbody"]
+shape = SubResource("BoxShape3D_y355q")
+
+[node name="mesh" type="MeshInstance3D" parent="rigidbody/shape"]
+mesh = SubResource("BoxMesh_3xqgt")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_0oenu")
+
+[node name="faces" type="Node3D" parent="rigidbody"]
+script = ExtResource("3_si37s")
+
+[node name="markers" type="Node3D" parent="rigidbody/faces"]
+
+[node name="face1" type="Marker3D" parent="rigidbody/faces/markers" groups=["face"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="face2" type="Marker3D" parent="rigidbody/faces/markers" groups=["face"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="face3" type="Marker3D" parent="rigidbody/faces/markers" groups=["face"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+
+[node name="face4" type="Marker3D" parent="rigidbody/faces/markers" groups=["face"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+
+[node name="face5" type="Marker3D" parent="rigidbody/faces/markers" groups=["face"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+
+[node name="face6" type="Marker3D" parent="rigidbody/faces/markers" groups=["face"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+
+[node name="values" type="Node3D" parent="rigidbody/faces"]
+
+[node name="face1" type="Label3D" parent="rigidbody/faces/values" groups=["dieValue"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.51, 0)
+text = "x"
+font_size = 132
+outline_size = 60
+
+[node name="face2" type="Label3D" parent="rigidbody/faces/values" groups=["dieValue"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.51, 0)
+text = "x"
+font_size = 132
+outline_size = 60
+
+[node name="face3" type="Label3D" parent="rigidbody/faces/values" groups=["dieValue"]]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.51, 0, 0)
+text = "x"
+font_size = 132
+outline_size = 60
+
+[node name="face4" type="Label3D" parent="rigidbody/faces/values" groups=["dieValue"]]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.51, 0, 0)
+text = "x"
+font_size = 132
+outline_size = 60
+
+[node name="face5" type="Label3D" parent="rigidbody/faces/values" groups=["dieValue"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.51)
+text = "x"
+font_size = 132
+outline_size = 60
+
+[node name="face6" type="Label3D" parent="rigidbody/faces/values" groups=["dieValue"]]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, -0.51)
+text = "x"
+font_size = 132
+outline_size = 60
+
+[connection signal="body_entered" from="rigidbody" to="rigidbody" method="_on_body_entered"]
+[connection signal="body_exited" from="rigidbody" to="rigidbody" method="_on_body_exited"]

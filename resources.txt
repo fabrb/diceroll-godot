@@ -1,0 +1,2 @@
+- https://timjklein36.github.io/posts/physics_dice_rolls/
+- https://github.com/timjklein36/godot-3d-dice

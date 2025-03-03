@@ -1,0 +1,15 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1741030185
+export_presets.cfg::TextFile::-1::1739746812::0::1::::<><>::
+icon.svg::CompressedTexture2D::4126482459613760349::1739726451::1739727775::1::::<><>::
+resources.txt::TextFile::-1::1739735048::0::1::::<><>::
+::res://playarea/::1741029254
+handleUi.gd::GDScript::-1::1741028098::0::1::::<>Node<>::
+playDice.gd::GDScript::-1::1741027936::0::1::::<>Node3D<>::
+table.tscn::PackedScene::3552000457807797069::1741029254::0::1::::<><>::res://playarea/handleUi.gd<>res://playarea/validateScore.gd<>res://playarea/playDice.gd<>res://playarea/tableUi.gd<>uid://by15tfc6pgccr::::res://icon.svg
+tableUi.gd::GDScript::-1::1741028117::0::1::::<>Node<>::
+validateScore.gd::GDScript::-1::1741028733::0::1::::<>Node<>::
+::res://props/::1741029254
+d6.tscn::PackedScene::7441475834684460361::1741029254::0::1::::<><>::res://props/dieMovement.gd<>uid://by15tfc6pgccr::::res://icon.svg<>res://props/dieValueRender.gd
+dieMovement.gd::GDScript::-1::1741029178::0::1::::<>RigidBody3D<>::
+dieValueRender.gd::GDScript::-1::1740838819::0::1::::<>Node3D<>::
