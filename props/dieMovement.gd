@@ -29,13 +29,10 @@ func _physics_process(delta: float) -> void:
 		isMoving = false
 		
 		for nodesData in get_tree().get_nodes_in_group("tableData"):
-			nodesData.call("setRollValue", int(String(findFaceSelected().text)))
+			nodesData.call("setRollValue", int(findFaceSelected().text))
 		
 		for nodesData in get_tree().get_nodes_in_group("tableActions"):
 			nodesData.call("finishRoll")
-		
-	elif (not isMoving and isAboveMinVelocity):
-		isMoving = true
 
 func rollDie() -> void:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -45,14 +42,14 @@ func rollDie() -> void:
 	self.apply_impulse(Vector3.BACK * rng.randf_range(-1.6, 1.6))
 	
 	self.apply_torque(Vector3(rng.randi_range(-100, 100), rng.randi_range(-100, 100), rng.randi_range(-100, 100)))
+	isMoving = true
 
 func findFaceSelected() -> Label3D:
 	var bestValue: float = -1
 	var bestFace: Node = null
 	
 	for face in faces:
-		var pos: float = (face.global_transform.origin - global_transform.origin).dot(Vector3.UP)
-		print(face.name, face.global_transform.origin - global_transform.origin)
+		var pos: float = face.global_transform.origin.dot(Vector3.UP)
 		
 		if (pos > bestValue):
 			bestValue = pos

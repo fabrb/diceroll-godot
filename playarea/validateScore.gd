@@ -1,6 +1,6 @@
 extends Node
 
-var rollScore: float = 0.0
+var rollScore: int = 0
 
 func rollStarted(numberOfDice: int) -> void:
 	for nodesData in get_tree().get_nodes_in_group("tableUi"):

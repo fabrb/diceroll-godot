@@ -5,9 +5,6 @@ var diceScenes: Array[Node]
 
 @onready var centerPoint: Marker3D = $selectablePoint/center
 
-func _ready() -> void:
-	return
-
 func _on_roll_pressed() -> void:
 	for nodesData in get_tree().get_nodes_in_group("tableData"):
 		nodesData.call("rollStarted", len(diceScenes))
@@ -28,7 +25,6 @@ func _on_roll_pressed() -> void:
 	
 	diceScenes.append(dieScene)
 	await update_dice_positions()
-	
 	for die in diceScenes:
 		die.get_child(0).call("rollDie")
 	
@@ -42,5 +38,5 @@ func update_dice_positions() -> void:
 		var vec3: Vector3 = Vector3(centerPoint.global_transform.origin.x, centerPoint.global_transform.origin.y, centerPoint.global_transform.origin.z)
 		
 		var tween: Tween = get_tree().create_tween()
-		tween.tween_property(die, "position", vec3, 0.08)
-		await get_tree().create_timer(0.08).timeout
+		tween.tween_property(die, "position", vec3, 0.1)
+		await get_tree().create_timer(0.1).timeout
