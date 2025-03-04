@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://bquu6tpfl0t2t"]
 
-[ext_resource type="Script" path="res://playarea/handleUi.gd" id="1_0kssf"]
-[ext_resource type="Script" path="res://playarea/validateScore.gd" id="1_3yb2l"]
-[ext_resource type="Script" path="res://playarea/playDice.gd" id="1_cxa36"]
-[ext_resource type="Script" path="res://playarea/tableUi.gd" id="1_tu7mw"]
+[ext_resource type="Script" uid="uid://bhpw7d48e8q7k" path="res://playarea/handleUi.gd" id="1_0kssf"]
+[ext_resource type="Script" uid="uid://hsfecw22a5l3" path="res://playarea/validateScore.gd" id="1_3yb2l"]
+[ext_resource type="Script" uid="uid://p2pg1tqfv5rs" path="res://playarea/playDice.gd" id="1_cxa36"]
+[ext_resource type="Script" uid="uid://dgkgbes4jtbb2" path="res://playarea/tableUi.gd" id="1_tu7mw"]
 [ext_resource type="Texture2D" uid="uid://by15tfc6pgccr" path="res://icon.svg" id="1_vm46p"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_v6kpb"]

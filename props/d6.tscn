@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://deayaw4udwqsf"]
 
-[ext_resource type="Script" path="res://props/dieMovement.gd" id="1_b2716"]
+[ext_resource type="Script" uid="uid://b1h6e3oddynb1" path="res://props/dieMovement.gd" id="1_b2716"]
 [ext_resource type="Texture2D" uid="uid://by15tfc6pgccr" path="res://icon.svg" id="1_is7e2"]
-[ext_resource type="Script" path="res://props/dieValueRender.gd" id="3_si37s"]
+[ext_resource type="Script" uid="uid://cfemukc0s8ok8" path="res://props/dieValueRender.gd" id="3_si37s"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dsc28"]
 friction = 0.0
